@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+        <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/font.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <title>Noctos Trivia</title>
+    </head>
+    <body>
+        <div class="appNoctos">
+            <img src="img/noctoslogo.png" alt="" style="width: 100%">
+            <div id="pregunta">
+
+            </div>
+
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script> 
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+
+
+        <script type="text/javascript">
+            app.initialize();
+            jQuery(document).ready(function($) {
+                var capa = '#pregunta';
+                var jsonPreguntas = Array();
+
+                //Cantidad de Preguntas a Hacer
+                var cantPreguntas = 10;
+
+                //Numeros de Preguntas aleatorias
+                var numPregunta = new Array();
+
+                //Puntaje
+                var Puntaje = 0;
+                var PuntajeCorrecto = 7;
+
+                //Inicializar
+                function iniciarTrivia(){
+                    Puntaje = 0;
+                    numPregunta = new Array();
+                    
+
+                    $(capa).html('');
+                    //HTML DE PREGUNTA
+                    //<h1 class="celeste">PREGUNTA_ <label id="preguntaNum" class="rosa">1</label></h1>
+                    var preguntaNum = $('<h1/>',{
+                        'class' : 'celeste titular',
+                        'text'  : 'BIENVENIDO A '
+                    }).append($('<label/>',{'class':'rosa','text' : 'TRIVIA NOCTOS'})).appendTo(capa);
+                    
+                    //<h2 id=preguntaTexto>TEXTO</h2>
+                    var preguntaTexto = $('<h2/>',{
+                        'text'  : '¿Comenzamos?'
+                    }).appendTo(capa);
+
+                    var respueta = $('<button/>',{
+                        'class'          : 'verde',
+                        'id'             : 'IniciarTrivia',
+                        'text'           : 'COMENZAR'
+                    }).appendTo(capa); 
+
+                    function aleatorio(min, max) {
+                        var num = Math.floor(Math.random()*(max-min+1))+min;
+
+                        for(var i = 0; i < numPregunta.length; i++) {
+                            if (numPregunta[i] == num) {
+                                console.log('se');
+                                  aleatorio(min, max);
+                                break;
+                            }
+                        }
+
+                        if(i == numPregunta.length){
+                            numPregunta.push(num);
+                        }
+                    }
+
+
+                     $.getJSON( "ajax/preguntas.json", function( data ) {
+                        
+                            //Cantidad de Preguntas en el JSON
+                            var TotalPreguntas = Object.keys(data.preguntas).length - 1;
+
+                            //Conseguir Preguntas Aleatorias
+                            for (i = 0; i < cantPreguntas; i++) { 
+                                aleatorio(0,TotalPreguntas);
+                            }
+                            jsonPreguntas = data.preguntas;
+
+                        //$(capa).html(data.preguntas[numPregunta[0]].pregunta + TotalPreguntas);
+                       // $(capa).html(jsonPreguntas[1].pregunta);
+                    })
+                }
+
+                //Crear Pregunta
+                function crearPregunta(num, data){
+                    $(capa).html('');
+
+                    //HTML DE PREGUNTA
+                    //<h1 class="celeste">PREGUNTA_ <label id="preguntaNum" class="rosa">1</label></h1>
+                    var preguntaNum = $('<h1/>',{
+                        'class' : 'celeste',
+                        'data-siguiente' : num+1,
+                        'text'  : 'PREGUNTA_ '
+                    }).append($('<label/>',{
+                                    'id':'preguntaNum',
+                                    'class':'rosa',
+                                    'data-valor' :num+1,
+                                    'text' : num+1})).appendTo(capa);
+                    
+                    //<h2 id=preguntaTexto>TEXTO</h2>
+                    var preguntaTexto = $('<h2/>',{
+                        'id'    : 'preguntaTexto',
+                        'text'  : data.pregunta
+                    }).appendTo(capa);
+
+                    $.each(data.respuestas, function(key,  valor) {
+                        //<button type="button" class="celeste" data-correcto="0">Leer QR</button>
+                        var respueta = $('<button/>',{
+                            'class'          : 'celeste preguntaTrivia',
+                            'data-correcto'  : valor.correcto,
+                            'text'           : valor.texto
+                        }).appendTo(capa); 
+                    });
+
+                }
+                //Finalizar
+                function finTrivia(){
+                    $(capa).html('');
+                    //HTML DE PREGUNTA
+                    //<h1 class="celeste">PREGUNTA_ <label id="preguntaNum" class="rosa">1</label></h1>
+                    $('<h1/>',{
+                        'class' : 'celeste titular',
+                        'text'  : 'ENCUESTA TERMINADA PUNTAJE  '
+                    }).appendTo(capa);
+
+                    $('<h1/>',{
+                        'class' : 'rosa puntaje',
+                        'text'  : Puntaje + ' de 10' 
+                    }).appendTo(capa);    
+
+                    if (Puntaje >= PuntajeCorrecto){
+                        $('<h2/>',{'text'  : 'Bien Hecho!'}).appendTo(capa);
+                    }else{
+                        $('<h2/>',{'text'  : 'Lo sentimos!'}).appendTo(capa);
+                    }
+
+                    $('<button/>',{
+                        'class'          : 'rosa',
+                        'id'             : 'FinalizarEncuesta',
+                        'text'           : 'Reiniciar'
+                    }).appendTo(capa); 
+                }
+
+                //Comenzar Trivia
+                iniciarTrivia();
+
+                //Iniciando Trivia
+                $(document).on('click', '#IniciarTrivia', function(event) {
+                    crearPregunta(0, jsonPreguntas[numPregunta[0]]);
+                });
+
+                //Finalizar Trivia
+                $(document).on('click', '#FinalizarEncuesta', function(event) {
+                    iniciarTrivia();
+                });
+
+                //Siguiente Pregunta
+                $(document).on('click', '.preguntaTrivia', function(event) {
+                    $('button').prop("disabled",true);
+
+                    if($(this).data('correcto') == '0'){
+                        $(this).addClass('rojo');
+                    }else{
+                        Puntaje++;
+                    }
+                    $('.preguntaTrivia[data-correcto="1"]').addClass('verde');
+
+
+                    if($('#preguntaNum').data('valor') == cantPreguntas){
+                        setTimeout(function(){
+                             finTrivia();
+                        }, 2000);    
+
+                    }else{
+                        setTimeout(function(){
+                            crearPregunta(
+                                $('h1').data('siguiente'), 
+                                jsonPreguntas[numPregunta[$('h1').data('siguiente')]]
+                                );
+                        }, 2000);
+                    }
+                });
+
+            });
+        </script>
+    </body>
+</html>

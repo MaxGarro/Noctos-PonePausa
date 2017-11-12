@@ -1,0 +1,73 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "escuela.manejo"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "escuela.manejo"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "escuela.manejo"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "escuela.manejo"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "escuela.manejo"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "escuela.manejo"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "noctos.ponepausa"
+        }
+    }
+}
