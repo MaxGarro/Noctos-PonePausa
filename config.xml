@@ -19,7 +19,7 @@
     <preference name="xwalkVersion" value="13+" />
     <preference name="xwalkVersion" value="13" />
  
-    <plugin name="cordova-plugin-crosswalk-webview-master" source="npm" spec="~1.1.1" />
+    <plugin spec="https://github.com/phonegap-build/cordova-plugin-crosswalk-webview.git" source="git" />
     <plugin name="cordova-plugin-device-motion" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />

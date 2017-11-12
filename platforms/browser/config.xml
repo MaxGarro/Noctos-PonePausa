@@ -27,4 +27,5 @@
     <preference name="orientation" value="portrait" />
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="Fullscreen" value="true" />
+    <preference name="xwalkVersion" value="13" />
 </widget>
