@@ -13,6 +13,7 @@
     <preference name="orientation" value="portrait" />
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="Fullscreen" value="true" />
+    <plugin name="com.dawsonloudon.videoplayer" spec="1.0.0" source="pgb" />
     <plugin name="cordova-plugin-device-motion" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />
