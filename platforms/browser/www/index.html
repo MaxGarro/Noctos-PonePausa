@@ -7,7 +7,6 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
         <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
-
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/font.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -17,7 +16,10 @@
         <div class="appNoctos">
             <img src="img/noctoslogo.png" alt="" style="width: 100%">
             <div id="pregunta">
-
+                <video width="320" height="240" controls>
+                  <source src="video/video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+                </video>
             </div>
 
         </div>
@@ -31,18 +33,14 @@
             app.initialize();
             jQuery(document).ready(function($) {
                 var capa = '#pregunta';
-                var jsonPreguntas = Array();
 
                 //Cantidad de Preguntas a Hacer
-                var cantPreguntas = 10;
-
-                //Numeros de Preguntas aleatorias
-                var numPregunta = new Array();
+                var cantPreguntas = 5;
 
                 //Puntaje
                 var Puntaje = 0;
-                var PuntajeCorrecto = 7;
-
+                var PuntajeCorrecto = 3;
+/*
                 //Inicializar
                 function iniciarTrivia(){
                     Puntaje = 0;
@@ -200,7 +198,7 @@
                         }, 2000);
                     }
                 });
-
+*/
             });
         </script>
     </body>
